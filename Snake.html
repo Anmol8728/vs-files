@@ -22,7 +22,6 @@
             font-size: 24px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
 </head>
 <body>
     <div id="score">Score: 0</div>
@@ -85,7 +84,11 @@
         function gameLoop() {
             update();
             draw();
-            setTimeout(gameLoop, 100);
+            // Calculate delay based on score
+            let delay = 200 - Math.floor(score / 10); 
+            // Ensure minimum delay of 50 milliseconds
+            delay = Math.max(delay, 50);
+            setTimeout(gameLoop, delay);
         }
 
         function handleSwipe(event) {
